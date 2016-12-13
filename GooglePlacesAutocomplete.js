@@ -169,6 +169,11 @@ const GooglePlacesAutocomplete = React.createClass({
     this._abortRequests();
   },
 
+  componentWillReceiveProps(nextProps) {
+    const newAddress = nextProps.getDefaultValue();
+    this.setState({ text: newAddress });
+  },
+
   _abortRequests() {
     for (let i = 0; i < this._requests.length; i++) {
       this._requests[i].abort();
