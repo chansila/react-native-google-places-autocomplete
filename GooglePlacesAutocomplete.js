@@ -169,12 +169,12 @@ const GooglePlacesAutocomplete = React.createClass({
     this._abortRequests();
   },
 
-  componentWillReceiveProps(nextProps) {
-    const newAddress = nextProps.getDefaultValue();
-    if(newAddress != '' || newAddress != null ) {
-      this.setState({ text: newAddress });
-    }
-  },
+  // componentWillReceiveProps(nextProps) {
+  //   const newAddress = nextProps.getDefaultValue();
+  //   if(newAddress != '' || newAddress != null ) {
+  //     this.setState({ text: newAddress });
+  //   }
+  // },
 
   _abortRequests() {
     for (let i = 0; i < this._requests.length; i++) {
