@@ -2,6 +2,11 @@
 Customizable Google Places autocomplete component for iOS and Android React-Native apps
 
 ### Changelog
+- 1.2.11 : Fixed current location result `onPress` event.
+- 1.2.10 : Set default `debounce` to `0`. Fixed debounce typing lag.
+- 1.2.9 : Added `isRowScrollable` prop.
+- 1.2.8 : Added `underlineColorAndroid`, `listUnderlayColor`, `renderLeftButton`, `renderRightButton` props. Added `nearbyPlacesAPI` option `None`.
+- 1.2.7 : Use `children` prop to pass children elements directly into `GooglePlacesAutocomplete`.
 - 1.2.6 : Added `renderRow` prop.
 - 1.2.5 : Added `renderDescription` prop for rendering dropdown item text
 - 1.2.4 : Added `listViewDisplayed` prop for controlling dropdown
@@ -9,9 +14,6 @@ Customizable Google Places autocomplete component for iOS and Android React-Nati
 - 1.2.2 : Added prop to change placeholder text color
 - 1.2.1 : Fixed special request characters issue + ensure react-native@0.28 peer dependency.
 - 1.2.0 : Using ActivityIndicator therefore removing deprecation warning. Requires react-native >= 0.28
-- 1.1.10 : Update to work with react-native > 0.24
-- 1.1.9 : Added `setAddressText` method
-- 1.1.8 : Ability to set address from outside of component
 
 
 ### Example
@@ -33,7 +35,7 @@ var Example = React.createClass({
         autoFocus={false}
         listViewDisplayed='auto'    // true/false/undefined
         fetchDetails={true}
-        renderDescription={(row) => row.terms[0].value} // display street only
+        renderDescription={(row) => row.description} // custom description render
         onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
           console.log(data);
           console.log(details);
@@ -72,6 +74,8 @@ var Example = React.createClass({
         filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
 
         predefinedPlaces={[homePlace, workPlace]}
+
+        debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
       />
     );
   }
