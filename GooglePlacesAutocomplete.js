@@ -526,7 +526,7 @@ const GooglePlacesAutocomplete = React.createClass({
     if ((this.state.text !== '' || this.props.predefinedPlaces.length || this.props.currentLocation === true) && this.state.listViewDisplayed === true) {
       return (
         <ListView
-          keyboardShouldPersistTaps={true}
+          keyboardShouldPersistTaps='always'
           keyboardDismissMode="on-drag"
           style={[defaultStyles.listView, this.props.styles.listView]}
           dataSource={this.state.dataSource}
@@ -562,6 +562,7 @@ const GooglePlacesAutocomplete = React.createClass({
             <TextInput
               { ...userProps }
               ref="textInput"
+              underlineColorAndroid='transparent'
               autoFocus={this.props.autoFocus}
               style={[defaultStyles.textInput, this.props.styles.textInput]}
               onChangeText={onChangeText ? text => {this._onChangeText(text); onChangeText(text)} : this._onChangeText}
